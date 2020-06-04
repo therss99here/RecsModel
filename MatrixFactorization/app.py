@@ -1,4 +1,4 @@
-from flask import Flask,jsonify,render_template,request, url_for
+from flask import Flask,render_template,request
 import pickle
 import numpy as np
 import random
