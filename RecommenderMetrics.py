@@ -76,8 +76,8 @@ class RecommenderMetrics:
         for userID, leftOutJobID, actualRating, estimatedRating, _ in leftOutPredictions:
             # Is it in the predicted top N for this user?
             hit = False
-            for movieID, predictedRating in topNPredicted[int(userID)]:
-                if (int(leftOutJobID) == movieID):
+            for jobID, predictedRating in topNPredicted[int(userID)]:
+                if (int(leftOutJobID) == jobID):
                     hit = True
                     break
             if (hit) :
@@ -97,9 +97,9 @@ class RecommenderMetrics:
             # Is it in the predicted top N for this user?
             hitRank = 0
             rank = 0
-            for movieID, predictedRating in topNPredicted[int(userID)]:
+            for jobID, predictedRating in topNPredicted[int(userID)]:
                 rank = rank + 1
-                if (int(leftOutJobID) == movieID):
+                if (int(leftOutJobID) == jobID):
                     hitRank = rank
                     break
             if (hitRank > 0) :
@@ -114,7 +114,7 @@ class RecommenderMetrics:
         hits = 0
         for userID in topNPredicted.keys():
             hit = False
-            for movieID, predictedRating in topNPredicted[userID]:
+            for jobID, predictedRating in topNPredicted[userID]:
                 if (predictedRating >= ratingThreshold):
                     hit = True
                     break
@@ -130,10 +130,10 @@ class RecommenderMetrics:
         for userID in topNPredicted.keys():
             pairs = itertools.combinations(topNPredicted[userID], 2)
             for pair in pairs:
-                movie1 = pair[0][0]
-                movie2 = pair[1][0]
-                innerID1 = simsAlgo.trainset.to_inner_iid(str(movie1))
-                innerID2 = simsAlgo.trainset.to_inner_iid(str(movie2))
+                job1 = pair[0][0]
+                job2 = pair[1][0]
+                innerID1 = simsAlgo.trainset.to_inner_iid(str(job1))
+                innerID2 = simsAlgo.trainset.to_inner_iid(str(job2))
                 similarity = simsMatrix[innerID1][innerID2]
                 total += similarity
                 n += 1
@@ -146,8 +146,8 @@ class RecommenderMetrics:
         total = 0
         for userID in topNPredicted.keys():
             for rating in topNPredicted[userID]:
-                movieID = rating[0]
-                rank = rankings[movieID]
+                jobID = rating[0]
+                rank = rankings[jobID]
                 total += rank
                 n += 1
         return total / n
