@@ -40,4 +40,5 @@ evaluator.AddAlgorithm(Random, "Random")
 # Fight!
 evaluator.Evaluate(False)
 
-evaluator.SampleTopNRecs(jb)
+err = evaluator.SampleTopNRecs(jb, testSubject=1)
+

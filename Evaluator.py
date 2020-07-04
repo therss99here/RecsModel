@@ -51,7 +51,7 @@ class Evaluator:
             print("Diversity: used = 1-S, where S is the average similarity score between every possible pair of recommendations for a given user. Higher means more diverse.")
             print("Novelty:   Average popularity rank of recommended items.")
         
-    def SampleTopNRecs(self, jb, testSubject, k=10):
+    def SampleTopNRecs(self, jb, testSubject, k=20):
         
         for algo in self.algorithms:
             print("\nUsing recommender ", algo.GetName())

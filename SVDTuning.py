@@ -29,10 +29,9 @@ gs = GridSearchCV(SVD, param_grid, measures=['rmse', 'mae'], cv=3)
 grid_result = gs.fit(evaluationData)
 print(grid_result)
 #Using pickle to dump the model
-pickle.dump(grid_result,open('model.pkl', 'wb'))
 
-#Using pickle to load the model
-pickle.load(open('model.pkl', 'rb'))
+
+
 
 
 # best RMSE score
@@ -58,4 +57,4 @@ evaluator.AddAlgorithm(Random, "Random")
 # Endgame!
 evaluator.Evaluate(False)
 
-evaluator.SampleTopNRecs(jb, testSubject=2)
+rdata = evaluator.SampleTopNRecs(jb,testSubject=17)

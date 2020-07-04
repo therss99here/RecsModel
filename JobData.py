@@ -13,8 +13,8 @@ class JobData:
 
     jobID_to_name = {}
     name_to_jobID = {}
-    ratingsPath = '../jobData/rating.csv'
-    jobsPath = '../jobData/editset.csv'
+    ratingsPath = 'jobData/rating.csv'
+    jobsPath = 'jobData/editset.csv'
     
     def LoadJobData(self):
 
